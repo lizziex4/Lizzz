@@ -1,0 +1,252 @@
+@font-face {
+  font-family: "PixelOperator";
+  src: url("../fonts/PixelOperator.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cubic_11";
+  src: url("../fonts/Cubic_11.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #fff0fa;
+  --panel: #fbd9e4;
+  --border-dark: #a36270;
+  --border-light: #ffffff;
+  --text: #000000;
+}
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: "PixelOperator", "Courier New", monospace;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ===== Navigator ===== */
+.explorer_navigator {
+  height: 22px; 
+  margin: 2px;
+  padding: 3px 5px;
+  display: flex; 
+  align-items: center;
+  gap: 8px; 
+  background-color: #fbd9e4; 
+  border-top: 1px solid #ffffff; 
+  border-left: 1px solid #ffffff;
+  border-bottom: 1px solid #a36270;
+  border-right: 1px solid #a36270;
+  font-size: 13px;
+  font-family: 'PixelOperator', 'Courier New', monospace;
+}
+
+.explorer_navigator .back_button {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff0fa;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.explorer_navigator .back_button:active {
+  border-top:  2px solid #a36270;
+  border-left: 2px solid #a36270;
+  border-bottom: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  background-color: #fbd9e4; 
+}
+
+.explorer_navigator .address_text {
+  color: #000000;
+  font-size: 16px;
+}
+
+.explorer_navigator .nav_search_bar {
+  flex-grow: 1; 
+  height: 18px;
+  background-color: #fff0fa;
+  border-top: 1px solid #a36270;
+  border-left: 1px solid #a36270;
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
+.explorer_navigator .search_bar_text {
+  padding: 4px;
+  font-size: 16px;
+  color: #000000;
+}
+
+/* ===== Page Layout ===== */
+.content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  padding: 0; 
+  overflow: hidden;
+}
+
+/* 核心修正：取消內距，轉為 Flex 容器 */
+.content_scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0; /* 讓花邊可以 100% 貼緊邊緣 */
+  background-color: #000000; 
+  color: #ffffff;            
+  display: flex;
+  flex-direction: column;
+}
+
+/* 全域捲軸 */
+.content_scroll::-webkit-scrollbar { width: 14px; }
+.content_scroll::-webkit-scrollbar-track { background: #f1edef; }
+.content_scroll::-webkit-scrollbar-thumb {
+  background: #fad6e4;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+}
+
+/* 頂部蕾絲：作為實體積木放在最前面 */
+.content_scroll::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 20px; 
+  min-height: 20px;
+  background-image: url("../assets/lace.png");
+  background-repeat: repeat-x;
+  background-size: auto 100%; 
+  margin-bottom: 20px; /* 與下方內容保持距離 */
+}
+
+/* 底部蕾絲：利用 auto 推到最底端 */
+.content_scroll::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 20px; 
+  min-height: 20px;
+  background-image: url("../assets/lace.png");
+  background-repeat: repeat-x;
+  background-size: auto 100%; 
+  transform: scaleY(-1);
+  margin-top: auto; /* 不管內容多短，都會自動推到畫面最下方 */
+}
+
+/* 讓內部的區塊左右留出安全邊距 */
+.content_scroll > section {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+img, .bar { max-width: 100%; }
+
+/* ===== 內部統計區塊 ===== */
+.top_layout {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.top_layout .left {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 20px; 
+}
+
+.stat { padding: 0; }
+
+.label {
+  font-size: 15px;
+  opacity: 0.9;
+  margin-bottom: 8px;
+  display: flex;         
+  align-items: center;   
+  gap: 8px;              
+}
+
+.label-gif {
+  width: 24px;
+  height: auto;
+  display: block; 
+}
+
+.value {
+  font-weight: 700;
+  padding-left: 0; 
+}
+
+.top_layout .value {
+  font-size: 20px; 
+  margin-top: 4px;
+}
+
+.latest .value {
+  font-size: 14px; 
+  margin-top: 6px;
+}
+
+/* ===== 進度條 ===== */
+.progress_section { margin-bottom: 24px; }
+
+.bar {
+  width: 100%;
+  height: 18px;
+  background: #fff;
+  border-top: 2px solid var(--border-dark);
+  border-left: 2px solid var(--border-dark);
+  border-bottom: 2px solid var(--border-light);
+  border-right: 2px solid var(--border-light);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  width: 0%;
+  background: #a36270;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); 
+}
+
+.milestones {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 6px;
+  opacity: 0.85;
+}
+
+/* ===== 最新紀錄 ===== */
+.latest {
+  font-family: 'Cubic_11','Courier New', monospace;
+  margin-bottom: 24px; /* 保障與底部蕾絲的距離 */
+}

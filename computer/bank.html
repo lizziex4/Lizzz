@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="bank.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="explorer_navigator">
+      <span class="back_button">&#60;</span>
+      <span class="address_text">bank</span>
+      <span class="nav_search_bar">
+        <span class="search_bar_text">PC Savings Tracker</span>
+      </span>
+    </div>
+
+    <div class="content_scroll">
+      <!-- Summary -->
+      <section class="stats stats-2">
+        <div class="stat">
+          <div class="label">
+            <img class="label-gif"
+                 src="../assets/cake.gif"
+                 alt="">
+            Saved
+          </div>
+          <div class="value" id="bankSavedValue">NT$ 0</div>
+        </div>
+
+        <div class="stat">
+          <div class="label">
+            <img class="label-gif"
+                 src="../assets/cake.gif"
+                 alt="">
+            Remaining
+          </div>
+          <div class="value" id="bankRemainingValue">NT$ 0</div>
+        </div>
+      </section>
+
+      <!-- Add entry -->
+      <section class="form_card">
+        <div class="label">Add a deposit</div>
+
+        <label class="form_row">
+          <span>Amount (NT$)</span>
+          <input id="amountInput" type="number" min="1" step="1" placeholder="ex. 500" />
+        </label>
+
+        <label class="form_row">
+          <span>Date</span>
+          <input id="dateInput" type="date"/>
+        </label>
+
+        <label class="form_row">
+          <span>Note</span>
+          <input id="noteInput" type="text" maxlength="50" placeholder="optional" />
+        </label>
+
+
+        <label class="form_row">
+          <span>Password</span>
+          <input id="passwordInput" type="password" placeholder="****" />
+        </label>
+
+        <div class="form_actions">
+          <button id="SaveBtn" type="button">Save</button>
+        </div>
+
+        <div class="form_hint" id="bankHint"></div>
+
+      </section>
+
+
+      <div id="customModal" class="modal_overlay" style="display: none;">
+        <div class="modal_box">
+          <div class="explorer_navigator" style="margin: 0; border-bottom: none;">
+            <span class="address_text" id="modalTitle">System</span>
+            <div style="flex-grow: 1;"></div>
+            <button id="modalCloseBtn" class="back_button" style="width: 20px;">X</button>
+          </div>
+          <div class="modal_content">
+            <div id="modalMessage" class="modal_text"></div>
+            <div class="form_actions" style="justify-content: center; margin-top: 15px;">
+              <button id="modalOkBtn" type="button">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div> <!-- ✅ /content_scroll -->
+  </div> <!-- ✅ /content -->
+
+  <script src="computer.js?v=5"></script>
+</body>
+</html>

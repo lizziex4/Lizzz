@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="zh-Hant" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="computer.css?v=100">
+
+
+</head>
+
+<body>
+  <div class="content">
+
+
+    <div class="explorer_navigator">
+      <span class="back_button">&#60;</span>
+      <span class="address_text">progress</span>
+      <span class="nav_search_bar">
+        <span class="search_bar_text">PC Savings Tracker</span>
+      </span>
+    </div>
+
+    <!-- 只有這一塊會捲動（不包含上面的 header） -->
+    <div class="content_scroll">
+
+      <section class="top_layout">
+        <div class="left">
+          <section class="stats stats-2">
+            <div class="stat">
+              <div class="label"><img class="label-gif"
+                src="../assets/catt.gif"
+                alt="">  Goal</div>
+              <div class="value" id="goalValue">NT$ 0</div>
+            </div>
+
+            <div class="stat">
+              <div class="label"><img class="label-gif"
+                src="../assets/catt.gif"
+                alt="">  Saved</div>
+              <div class="value" id="savedValue">NT$ 0</div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="progress_section">
+        <div class="bar" aria-label="progress bar">
+          <div class="fill" id="progressFill" style="width: 0%"></div>
+        </div>
+
+        <div class="milestones">
+          <span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span>
+        </div>
+      </section>
+
+      <section class="latest">
+        <div class="label"><img class="label-gif"
+        src="https://64.media.tumblr.com/148c78d9f22d662ce1aa4b9964b6067f/16966a778f4a262c-2b/s75x75_c1/12eb7fdc93e8a286ef3ae4980b22e108f7df07bf.gif"
+        alt="">&nbsp;Latest entry</div>
+        <div class="value" id="latestEntry">No entries yet.</div>
+      </section>
+
+
+      
+
+
+    </div>
+  </div>
+
+  <script src="computer.js?v=4"></script>
+</body>
+</html>
