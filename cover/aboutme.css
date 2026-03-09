@@ -1,0 +1,195 @@
+@font-face {
+
+  
+  /* 這個名字是你之後在 CSS 裡要用的「字體代號」(可自訂) */
+  font-family: "Cubic_11";
+
+  /* src：字體來源（url 指向你專案內的檔案路徑） */
+  /* format('truetype')：告訴瀏覽器這是 TTF */
+
+  src: url("../fonts/Cubic_11.ttf") format("truetype");
+
+  /* 這個檔案對應的字重（Regular 通常是 400） */
+  font-weight: 400;
+
+  /* 字體樣式：normal = 正常體（非斜體） */
+  font-style: normal;
+
+  /* 字體載入策略：先顯示 fallback 字體，載完再換，避免白屏 */
+  font-display: swap;
+}
+
+
+/* 讓 html、body 撐滿整個視窗高度（用來做正中間置中） */
+html, body {
+  height: 100%;
+}
+
+
+
+.window {
+    background-color: #fbd9e4;
+    border: 2px solid #a36270;
+    width: 200px; /* 新增明確寬度，讓視窗放大 */
+    min-height: 200px;
+
+        /* 加入以下三行，關閉文字選取功能 */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    
+}
+
+body {
+  /* 去掉瀏覽器預設外距，避免內容不是完美置中 */
+  margin: 0;
+  /* 設定背景 */
+
+  /*background-size: ; */
+  /* 用 Flex 讓裡面的 main 正中間（水平+垂直） */
+  display: flex;
+    /* 垂直置中（交叉軸） */
+
+  /* 字體設定 */
+  font-family: 'Cubic_11', 'Courier New', monospace;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+  font-size: 9px;
+
+
+}
+
+
+/* ✅ 讓 navigator 的計算方式跟 index 一樣（避免高度被 border-box 擠壓） */
+.explorer_navigator,
+.explorer_navigator *{
+  box-sizing: content-box;
+}
+
+/* ===== Navigator (span 畫法) ===== */
+.explorer_navigator {
+  height: 22px;
+  margin: 2px;
+  padding: 3px 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fbd9e4;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-bottom: 1px solid #a36270;
+  border-right: 1px solid #a36270;
+  font-size: 13px;
+}
+
+.explorer_navigator .back_button {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff0fa;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  user-select: none;
+}
+
+.explorer_navigator .back_button:active {
+  border-top: 2px solid #a36270;
+  border-left: 2px solid #a36270;
+  border-bottom: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  background-color: #fbd9e4;
+}
+
+.explorer_navigator .address_text{
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.explorer_navigator .nav_search_bar{
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 18px;
+  background-color: #fff0fa;
+  border-top: 1px solid #a36270;
+  border-left: 1px solid #a36270;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.explorer_navigator .search_bar_text{
+  padding: 4px;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== Page layout ===== */
+.content{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border-top: 2px solid var(--border-light);
+  border-left: 2px solid var(--border-light);
+  border-bottom: 2px solid var(--border-dark);
+  border-right: 2px solid var(--border-dark);
+  overflow: hidden;
+}
+
+.content_scroll{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px;
+}
+
+/* 捲條配色（跟你粉色系一致） */
+.content_scroll::-webkit-scrollbar{ width: 14px; }
+.content_scroll::-webkit-scrollbar-track{ background: #f1edef; }
+.content_scroll::-webkit-scrollbar-thumb{
+  background: #fad6e4;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+}
+
+.icon{
+  font-size: 26px;
+  font-family: 'Cubic_11', 'Courier New', monospace;
+
+}
+
+.top_layout{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: nowrap;   /* 不要自動換行 */
+}
+
+/* 左邊吃剩下空間 */
+.top_layout .left{
+  flex: 1 1 auto;
+  min-width: 0;        /* 防止文字把右邊擠掉 */
+}
+
+/* 右邊固定在右側 */
+.top_layout .right{
+  flex: 0 0 auto;
+  margin-left: auto;   /* 直接推到最右 */
+}
+
+.top_layout .image img{
+  width: 230px;
+  height: auto;
+}

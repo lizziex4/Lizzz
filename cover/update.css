@@ -1,0 +1,126 @@
+@font-face {
+  /* 這個名字是你之後在 CSS 裡要用的「字體代號」(可自訂) */
+  font-family: "Cubic_11";
+
+  /* src：字體來源（url 指向你專案內的檔案路徑） */
+  /* format('truetype')：告訴瀏覽器這是 TTF */
+
+  src: url("../fonts/Cubic_11.ttf") format("truetype");
+
+  /* 這個檔案對應的字重（Regular 通常是 400） */
+  font-weight: 400;
+
+  /* 字體樣式：normal = 正常體（非斜體） */
+  font-style: normal;
+
+  /* 字體載入策略：先顯示 fallback 字體，載完再換，避免白屏 */
+  font-display: swap;
+}
+
+
+
+/* 讓 html、body 撐滿整個視窗高度（用來做正中間置中） */
+html, body {
+  height: 100%;
+}
+
+
+
+
+body {
+  /* 去掉瀏覽器預設外距，避免內容不是完美置中 */
+  margin: 0;
+  /* 設定背景 */
+
+  /*background-size: ; */
+  /* 用 Flex 讓裡面的 main 正中間（水平+垂直） */
+  display: flex;
+    /* 垂直置中（交叉軸） */
+
+  /* 字體設定 */
+  font-family: 'Cubic_11', 'Courier New', monospace;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+  font-size: 9px;
+
+
+}
+
+
+
+
+/* ===== Page layout ===== */
+.content {
+  width: 100%;      /* 確保寬度填滿 iframe */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f1edef; 
+  border-top: 2px solid #fff0fa;
+  border-left: 2px solid #fff0fa;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 移除 padding，讓內框貼齊 */
+.content_scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0; /* 改為 0 才能貼齊 */
+}
+
+/* 設定黑色內框 */
+.inner_box {
+  background: #000000;
+  min-height: 100%; /* 確保黑色區塊垂直撐滿 */
+  padding: 12px;    /* 內容的間距改在這裡設定 */
+  box-sizing: border-box;
+}
+
+/* 捲條配色（跟你粉色系一致） */
+.content_scroll::-webkit-scrollbar{ width: 14px; }
+.content_scroll::-webkit-scrollbar-track{ background: #f1edef; }
+.content_scroll::-webkit-scrollbar-thumb{
+  background: #fad6e4;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+}
+
+
+
+.update {
+  display: flex;
+  flex-direction: column; /* 強制內容垂直排列（換行） */
+  gap: 4px;              /* 第一行與第二行的間距 */
+  margin-bottom: 16px;    /* 每則更新之間的間距 */
+  color: #ffffff;
+}
+
+.update_header {
+  display: flex;
+  align-items: center;    /* 讓 GIF 與文字垂直對齊 */
+  gap: 8px;              /* GIF 與日期的間距 */
+}
+
+.update_date {
+  font-size: 12px;
+  text-decoration: underline; /* 加上底線 */
+  text-underline-offset: 3px; /* 底線與文字的距離 */
+}
+
+.update_text {
+  font-size: 12px;
+  padding-left: 2px;     /* 讓文字對齊日期的開頭（GIF寬度+間距） */
+  line-height: 1.5;
+}
+
+.update_gif {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated; /* 保持像素感 */
+}

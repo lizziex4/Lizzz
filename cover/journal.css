@@ -1,0 +1,86 @@
+@font-face {
+  font-family: "Cubic_11";
+  src: url("../fonts/Cubic_11.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  font-family: 'Cubic_11', 'Courier New', monospace;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+}
+
+.content_scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #f1edef; 
+  padding: 0; 
+}
+
+/* 捲動條樣式 */
+.content_scroll::-webkit-scrollbar { width: 14px; }
+.content_scroll::-webkit-scrollbar-track { background: #f1edef; }
+.content_scroll::-webkit-scrollbar-thumb {
+  background: #fad6e4;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+}
+
+/* 黑色沉浸式內框 */
+.inner_box {
+  background: #000000;
+  min-height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+.journal_title {
+  font-size: 24px;
+  color: #fbd9e4;
+  margin-top: 0;
+  margin-bottom: 24px;
+  text-align: center;
+  text-shadow: 2px 2px #a36270;
+}
+
+/* 單篇日誌區塊 */
+.journal_entry {
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed #a36270;
+}
+
+.entry_header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.entry_date {
+  font-size: 14px;
+  color: #fbd9e4;
+}
+
+.entry_tag {
+  font-size: 12px;
+  background-color: #a36270;
+  color: #ffffff;
+  padding: 2px 6px;
+}
+
+.entry_content {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #eeeeee;
+}
