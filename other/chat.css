@@ -1,0 +1,146 @@
+@font-face {
+  /* 這個名字是你之後在 CSS 裡要用的「字體代號」(可自訂) */
+  font-family: "Cubic_11";
+
+  /* src：字體來源（url 指向你專案內的檔案路徑） */
+  /* format('truetype')：告訴瀏覽器這是 TTF */
+
+  src: url("../fonts/Cubic_11.ttf") format("truetype");
+
+  /* 這個檔案對應的字重（Regular 通常是 400） */
+  font-weight: 400;
+
+  /* 字體樣式：normal = 正常體（非斜體） */
+  font-style: normal;
+
+  /* 字體載入策略：先顯示 fallback 字體，載完再換，避免白屏 */
+  font-display: swap;
+}
+
+
+
+/* 讓 html、body 撐滿整個視窗高度（用來做正中間置中） */
+html, body {
+  height: 100%;
+}
+
+
+
+
+body {
+  /* 去掉瀏覽器預設外距，避免內容不是完美置中 */
+  margin: 0;
+  /* 設定背景 */
+
+  /*background-size: ; */
+  /* 用 Flex 讓裡面的 main 正中間（水平+垂直） */
+  display: flex;
+    /* 垂直置中（交叉軸） */
+
+  /* 字體設定 */
+  font-family: 'Cubic_11', 'Courier New', monospace;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+  font-size: 9px;
+
+
+}
+
+
+/* ...保留你原本的 @font-face 與 body 設定... */
+
+.chat_container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: #fbd9e4;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-top: 2px; /* 縮減頂部粉色區域 */
+}
+
+.content_scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px; /* 縮小內距 */
+  background-color: #000000;
+  margin: 0 4px 0 4px; /* 左右邊框感 */
+  border: 1px solid #a36270;
+  box-sizing: border-box;
+}
+
+
+/* 捲條配色 */
+.content_scroll::-webkit-scrollbar{ width: 14px; }
+.content_scroll::-webkit-scrollbar-track{ background: #f1edef; }
+.content_scroll::-webkit-scrollbar-thumb{
+  background: #fad6e4;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+}
+
+/* 單條留言樣式 */
+.message_item {
+  margin-bottom: 12px;
+  border-bottom: 1px dashed #444;
+  padding-bottom: 8px;
+}
+.message_info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.m_name { color: #fad6e4; font-weight: bold; font-size: 10px; }
+.m_time { color: #c1c0c0; font-size: 11px; }
+.m_content { font-size: 13px; line-height: 1.6; word-break: break-all; color: #ffffff; }
+
+/* 下方輸入區：會因為 flex 佈局自動待在底部 */
+.input_area {
+  display: flex;
+  padding: 6px 4px 8px 4px; /* 緊湊排版 */
+  background: #fbd9e4;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.input_fields {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 4px; /* 輸入框靠緊一點 */
+}
+
+input {
+  background: #fff0fa;
+  border: 1px solid #a36270;
+  padding: 2px 4px; /* 變扁一點 */
+  font-family: 'Cubic_11', monospace;
+  font-size: 13px;
+  outline: none;
+}
+
+button#send_btn {
+  width: 50px; /* 縮小按鈕 */
+  font-size: 11px;
+  background: #fad6e4;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+  cursor: pointer;
+}
+button#send_btn:disabled {
+  color: #a36270;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+button#send_btn:active:not(:disabled) {
+  border: 2px solid;
+  border-color: #a36270 #ffffff #ffffff #a36270;
+}
+
+

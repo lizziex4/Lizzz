@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+  <div class="chat_container">
+    <div class="content_scroll" id="chat_box">
+      </div>
+
+    <div class="input_area">
+      <div class="input_fields">
+        <input type="text" id="user_name" placeholder="User Name..." autocomplete="off">
+        <input type="text" id="user_command" placeholder="Type a message..." autocomplete="off">
+      </div>
+      <button id="send_btn" disabled><img src="https://pixels.crd.co/assets/images/gallery06/c3055e59.gif?v=29416114"
+        alt="">Enter</button>
+    </div>
+  </div>
+
+<script>
+  const userNameInput = document.getElementById('user_name');
+  const commandInput = document.getElementById('user_command');
+  const sendBtn = document.getElementById('send_btn');
+  const chatBox = document.getElementById('chat_box');
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwlHGOUG4QIJJRTn7uDb7esfpqR6BpekF27BgL38JVjz-cCvUqwqysChqRZD9bRtIv_/exec';
+
+  // 定義供 GAS 呼叫的讀取回呼函式
+  window.loadCallback = function(data) {
+    chatBox.innerHTML = '';
+    data.forEach(msg => renderMessage(msg));
+    chatBox.scrollTop = chatBox.scrollHeight;
+  };
+
+  // 定義供 GAS 呼叫的寫入回呼函式
+  window.writeCallback = function(result) {
+    console.log('伺服器處理狀態:', result.status);
+  };
+
+  function loadMessages() {
+    const script = document.createElement('script');
+    script.src = `${scriptURL}?action=read&callback=loadCallback`;
+    document.body.appendChild(script);
+    setTimeout(() => document.body.removeChild(script), 2000);
+  }
+
+  function sendMessage() {
+    if (sendBtn.disabled) return;
+    
+    const now = new Date();
+    const timeString = `${now.getFullYear()}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+    
+    // 將輸入內容編碼，避免特殊符號破壞網址結構
+    const name = encodeURIComponent(userNameInput.value.trim());
+    const content = encodeURIComponent(commandInput.value.trim());
+    const time = encodeURIComponent(timeString);
+
+    renderMessage({ name: userNameInput.value.trim(), content: commandInput.value.trim(), time: timeString }); 
+    chatBox.scrollTop = chatBox.scrollHeight;
+    commandInput.value = '';
+    sendBtn.disabled = true;
+
+    // 動態載入腳本，藉由網址參數將資料傳送給伺服器
+    const script = document.createElement('script');
+    script.src = `${scriptURL}?action=write&name=${name}&content=${content}&time=${time}&callback=writeCallback`;
+    document.body.appendChild(script);
+    setTimeout(() => document.body.removeChild(script), 2000);
+  }
+
+  function renderMessage(msg) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message_item';
+    messageDiv.innerHTML = `
+      <div class="message_info">
+        <span class="m_name">${msg.name}</span>
+        <span class="m_time">${msg.time}</span>
+      </div>
+      <div class="m_content">${msg.content}</div>
+    `;
+    chatBox.appendChild(messageDiv);
+  }
+
+  [userNameInput, commandInput].forEach(input => {
+    input.addEventListener('input', () => {
+      sendBtn.disabled = !(userNameInput.value.trim() && commandInput.value.trim());
+    });
+  });
+
+  sendBtn.addEventListener('click', sendMessage);
+  commandInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  loadMessages();
+</script>
+
+
+</body>
+</html>
