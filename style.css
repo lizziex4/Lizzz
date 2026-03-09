@@ -1,0 +1,441 @@
+
+@font-face {
+  /* 這個名字是你之後在 CSS 裡要用的「字體代號」(可自訂) */
+  font-family: "PixelOperator";
+
+  /* src：字體來源（url 指向你專案內的檔案路徑） */
+  /* format('truetype')：告訴瀏覽器這是 TTF */
+  src: url("./fonts/PixelOperator.ttf") format("truetype");
+
+
+  /* 這個檔案對應的字重（Regular 通常是 400） */
+  font-weight: 400;
+
+  /* 字體樣式：normal = 正常體（非斜體） */
+  font-style: normal;
+
+  /* 字體載入策略：先顯示 fallback 字體，載完再換，避免白屏 */
+  font-display: swap;
+}
+
+
+/* 讓 html、body 撐滿整個視窗高度（用來做正中間置中） */
+html, body {
+  height: 100%;
+}
+
+body {
+  /* 去掉預設外距 */
+  margin: 0;
+  background-color: #000000;
+
+  /* 將 GIF 放前面當上層，JPG 放後面當底層 */
+  background-image: url('https://i.pinimg.com/originals/69/e2/7c/69e27c177766a3cb153b37682b22186c.gif'), url('https://i.pinimg.com/736x/b9/3f/8e/b93f8e7e33f0d053c631da7304e82a91.jpg');
+  
+  /* 關鍵修改 1：兩層都設定為 repeat (重複平鋪) */
+  background-repeat: repeat, repeat;
+  
+  /* 關鍵修改 2：尺寸設為 auto，保持原圖大小才能拼貼 */
+  background-size: auto, auto;
+  
+  /* 關鍵修改 3：從左上角開始拼貼 */
+  background-position: top left, top left;
+
+  /* 用 Flex 讓裡面的 main 正中間（水平+垂直） */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 字體設定 */
+  font-family: 'PixelOperator', 'Courier New', monospace;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+}
+
+
+.desktop-icons {
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  display: flex;
+  flex-direction: column; /* 讓子元素由上往下直排 */
+  gap: 30px;              /* 一行指令就能均勻拉開每個圖示的垂直間距 */
+  z-index: 100;  /* 確保顯示在背景之上 */
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    /* 讓圖片與文字水平置中 */
+  width: 70px;            /* 限制寬度，這也是使用者滑鼠可以點擊的感應範圍 */
+  cursor: pointer;
+  text-align: center;
+}
+
+.desktop-icon span {
+  color: #ffffff; 
+  font-size: 15px;
+  padding: 2px 4px;
+  /* 利用右、左、下、上四個方向的 1px 黑色陰影，拼湊出文字邊框 */
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+
+/* 滑鼠移上去時的效果 */
+.desktop-icon:hover span {
+  background-color: #a36270; /* 變成經典深藍色背景 */
+  text-shadow: none;         /* 填滿底色時就把邊框陰影拿掉，畫面更乾淨 */
+}
+
+.desktop-icon img {
+  width: 55px; 
+  height: auto; 
+  display: block; 
+  margin: 0 auto; 
+
+}
+
+
+
+
+/* 覆寫視窗本體的背景色（原本為復古灰） */
+.window {
+    background-color: #fbd9e4;
+    border: 2px solid #a36270;
+    width: 450px; /* 新增明確寬度，讓視窗放大 */
+
+
+        /* 加入以下三行，關閉文字選取功能 */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    
+}
+/* 覆寫標題列的背景色（原本為深藍色漸層） */
+/* 由於 98.css 使用了 background 屬性來畫漸層，我們這裡也要用 background 來覆蓋它 */
+.title-bar {
+    background: #000000; 
+}
+/* 覆寫標題列的文字顏色（原本為白色） */
+.title-bar-text {
+    color: #ffffff; 
+    letter-spacing: 2px; /* 稍微拉開字距，讓排版看起來更有科技感 */
+}
+
+
+.title-bar .back_button{
+
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff0fa;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  
+
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-radius: 0;
+  outline: none;
+
+
+}
+
+
+/* 中央容器：讓圖片跟輸入框垂直排列 */
+.center {
+  /* 仍用 flex 來排列子元素 */
+  display: flex;
+  /* 垂直排列：圖片在上、輸入框在下 */
+  flex-direction: column;
+  /* 元素之間的間距 */
+  gap: 16px;
+  /* 內容置中對齊 */
+  align-items: center;
+  /* 讓內容離螢幕邊緣有安全距離（手機很重要） */
+  padding: 24px;
+}
+
+
+
+
+/* 網址列外框設定 */
+.explorer_navigator {
+  height: 22px; 
+  margin: 2px;
+  padding: 3px 5px;
+  display: flex; 
+  align-items: center;
+  gap: 8px; 
+  background-color: #fbd9e4; 
+  border-top: 1px solid #ffffff; 
+  border-left: 1px solid #ffffff;
+  border-bottom: 1px solid #a36270;
+  border-right: 1px solid #a36270;
+  
+  font-size: 13px;
+  font-family: 'PixelOperator', 'Courier New', monospace;
+}
+
+/* 返回按鈕設定 (使用純 span 繪製) */
+.explorer_navigator .back_button {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff0fa;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.explorer_navigator .back_button:active {
+  /* 將左上邊框變為暗色，右下邊框變為亮色，產生內凹錯覺 */
+  border-top:  2px solid #a36270;
+  border-left: 2px solid #a36270;
+  border-bottom: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  /* 背景稍微變深一點點，增強真實感 */
+  background-color: #fbd9e4; 
+}
+
+/* address 文字設定 */
+.explorer_navigator .address_text {
+  color: #000000;
+  font-size: 13px;
+}
+
+/* 網址列背景框 (使用純 span 繪製) */
+.explorer_navigator .nav_search_bar {
+  flex-grow: 1; 
+  height: 18px;
+  background-color: #fff0fa;
+  border-top: 1px solid #a36270;
+  border-left: 1px solid #a36270;
+ 
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
+/* 網址列內部文字設定 */
+.explorer_navigator .search_bar_text {
+  padding:  4px;
+  font-size: 16px;
+  color: #000000;
+}
+
+.explorer_navigator .address_text, 
+.explorer_navigator .search_bar_text {
+  font-size: 16px; /* ★ 放大字體 */
+}
+
+
+
+.button_row .icon_btn:focus,
+.button_row .icon_btn:focus-visible{
+  outline: none;
+}
+
+/* 底部按鈕列：橫排 */
+/* 底部按鈕列外框 */
+.button_row {
+  display: flex;
+  gap: 0px; /* ★ 加入 6px 間距，讓按鈕獨立，邊框不會疊加變粗 */
+  padding: 10px;
+  align-items: stretch;
+  padding-bottom: 0px;  /* 底部歸零，消除多餘空白 */
+  /* ★ 刪除了 height: 80px; 讓高度自然撐開，不再切掉按鈕底部 */
+}
+
+/* 每顆按鈕設定 */
+.button_row .icon_btn {
+  flex: 1 1 0;              
+  box-sizing: border-box;   
+  min-height: 80px;         /* 稍微縮小高度，比例更好看 */
+  
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-radius: 0;
+  outline: none;
+
+  display: flex;
+  flex-direction: column;   
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  background-color: #fad6e4;
+  /* ★ 將邊框從 3px 改為更精緻的 2px */
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+  cursor: pointer;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+/* 按鈕點擊下壓狀態 */
+.button_row .icon_btn:active {
+  border-top:  2px solid #a36270;
+  border-left: 2px solid #a36270;
+  border-bottom: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  background-color: #fbd9e4;
+}
+
+.button_row .icon_btn img{
+  width: 32px;
+  height: 32px;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+
+
+/* 4. 標題列關閉按鈕微調 (使用你提供的設定) */
+.title-bar button {
+  background-color: #fff0f0;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+
+
+
+.content iframe {
+  width: 100%;
+  height: 260px;   /* 依你視窗大小調整 */
+  border: 0;
+  display: block;
+  background: #fff0fa; /* 先給底色，方便確認它有在顯示 */
+
+}
+
+
+/* 1. 修正圖片的標籤名稱與尺寸 */
+#window2 .window-body img {
+  width: 220px; 
+  height: auto; 
+  display: block; 
+  margin: 0 auto; 
+}
+
+/* 2. 讓 window2 視窗完全貼合內容 */
+#window2 {
+  min-height: 0;
+  width: fit-content; /* 讓寬度剛剛好包住裡面的圖片 */
+  height: auto; 
+}
+
+#window4 {
+  min-height: 0;
+  width: fit-content; /* 讓寬度剛剛好包住裡面的圖片 */
+  height: auto; 
+
+
+
+}
+
+
+#window4 .window-body img {
+  width: 150px; 
+  height: auto; 
+  display: block; 
+  margin: 0 auto; 
+  background-color: #c8c8c8;
+
+}
+
+#window5 {
+  min-height: 0;
+  width: fit-content; /* 讓寬度剛剛好包住裡面的圖片 */
+  height: auto; 
+
+}
+
+#window5 .window-body img {
+  width: 350px; 
+  height: auto; 
+
+
+}
+
+/* 1. 讓主視窗外框保持彈性，永遠貼合內部元素 */
+#MainWindow {
+  width: 500px; 
+  min-height: 0;
+  height: auto; /* 關鍵修改：將 600px 改回 auto，消除底部空白 */
+}
+
+/* 2. 透過放大內部螢幕區塊，來自然撐高整個視窗 */
+#MainWindow .content iframe {
+  width: 100%;   
+  height: 450px; /* 將你要放大的高度加到這裡，外框就會跟著變高 */
+  border: 0;
+  display: block;
+}
+
+#window6{
+  width:220px; /* 自由調整你想要的寬度 */
+  min-height: 0;
+  height: auto;
+  
+}
+
+#window6 .content iframe {
+  width: 100%;    /* 強制撐滿 window6 的 220px */
+  height: 400px;  /* 視窗內容高度 */
+  border: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+
+#window7{
+  width:220px; /* 自由調整你想要的寬度 */
+  min-height: 0;
+  height: auto;
+  
+}
+
+#window7 .content iframe {
+  width: 100%;    /* 強制撐滿 window6 的 220px */
+  height: 400px;  /* 視窗內容高度 */
+  border: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+#window8 {
+  width: 320px !important; 
+  height: auto !important; 
+  min-height: 0;
+}
+
+/* 修正路徑：直接找 window-body 下的 iframe */
+#window8 .window-body iframe {
+  width: 100%;
+  height: 400px !important; /* 在這裡調整你想要的高度 */
+  border: 0;
+  display: block;
+}

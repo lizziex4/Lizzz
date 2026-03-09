@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lizzzzz</title>
+  <!-- description：搜尋引擎摘要（SEO）；分享連結時也常被引用 -->
+  <meta name="description" content="Track Liz savings for a gaming PC + interactive cyber-fashion portfolio." />
+
+  <!-- Google Fonts (免費 CDN) -->
+  <!-- 1) 標題用：Orbitron（偏 Cyber）  2) 內文用：Inter（高級乾淨） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <!-- 引入你自己的 CSS 檔案 -->
+  <link rel="stylesheet" href="https://unpkg.com/98.css">
+  <link rel="stylesheet" href="style.css" />
+
+
+</head>
+<body>
+  
+
+    <!-- 新增：桌面圖示區塊，固定於左側 -->
+  <div class="desktop-icons">
+    <div class="desktop-icon" onclick="openWindow('MainWindow')">
+      <img src="assets/Lizzz.png" alt="">
+      <span>Lizzz</span>
+    </div>
+    <div class="desktop-icon" onclick="openWindow('window3')">
+      <img src="assets/computer2.png" alt="">
+      <span>Computer</span>
+    </div>
+    <div class="desktop-icon" onclick="openWindow('window5')">
+      <img src="assets/terminal.png" alt="">
+      <span>Terminal</span>
+    </div>
+    <div class="desktop-icon" onclick="openWindow('window7'); openWindow('window2')">
+      <img src="assets/media2.png" alt="">
+      <span>Media</span>
+    </div>
+    <div class="desktop-icon" onclick="openWindow('window8')">
+      <img src="assets/media.png" alt="">
+      <span>Chat</span>
+    </div>
+    <div class="desktop-icon" onclick="openWindow('window4')">
+      <img src="assets/tim3.png" alt="">
+      <span>Ting</span>
+    </div>
+
+
+  </div>
+
+
+
+  <main class="center">
+
+    <!-- main window -->>
+    <div class="window" id="MainWindow" style="position: absolute; z-index: 1002; left: 600px; top: 150px;">
+      <div class="title-bar" id="MainTitleBar" style="cursor: grab;">
+        <div class="title-bar-text">Lizzzzz</div>
+        <div class="title-bar-controls">
+        <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <span class="window-body">
+      <div class="explorer_navigator">
+        <span class="back_button">&#60;</span>
+        <span class="address_text">address</span>
+        <span class="nav_search_bar">
+          <span class="search_bar_text">My Documents</span>
+        </span>
+      </div>  
+
+      <div class="content">
+         <iframe src="cover/cover.html" id="frame1"></iframe>
+
+      </div>
+    
+
+      <div class="button_row">
+        <button class="icon_btn" type="button" onclick="setMainPage('cover/cover.html')">
+          <img src="assets/home.png" alt="">
+          <span class="btn_text">HomePage</span>
+        </button>
+
+        <button class="icon_btn" type="button" onclick="setMainPage('cover/aboutme.html')">
+          <img src="assets/aboutme.png" alt="">
+          <span class="btn_text">AboutMe</span>
+        </button>
+
+        <button class="icon_btn" type="button" onclick="setMainPage('cover/links.html')">
+          <img src="assets/links.png" alt="">
+          <span class="btn_text">Links</span>
+        </button>
+
+        <button class="icon_btn" type="button" onclick="setMainPage('cover/journal.html')">
+          <img src="assets/journal.png" alt="">
+          <span class="btn_text">Journal</span>
+        </button>
+      </div>
+       </span>
+       
+    </div>
+     
+
+    <!-- window2 -->
+    <div class="window" id="window2"
+        style="display: none;position: absolute; z-index: 900; left: 380px; top: 200px;">
+
+      <div class="title-bar" id="TitleBar2" style="cursor: grab;">
+        <div class="title-bar-text">love</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <img src="https://i.pinimg.com/originals/55/6c/0a/556c0ae630b46f476da70f0f0284ba0f.gif" alt="">
+      </div>
+
+    </div>
+
+
+
+        <!-- window3 -->
+    <div class="window" id="window3"
+        style="display: none; position: absolute; z-index: 900; left: 1080px; top: 100px;">
+
+      <div class="title-bar" id="TitleBar3" style="cursor: grab;">
+        <div class="title-bar-text">Computer</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      
+      <span class="window-body">
+        <div class="content">
+         <iframe src="computer/computer.html" id="frame2"></iframe>
+
+
+        <div class="button_row">
+        <button class="icon_btn" type="button" onclick="setWindow3Page('computer/computer.html')">
+          <img src="assets/progress.png" alt="">
+          <span class="btn_text">Progress</span>
+        </button>
+
+
+        <button class="icon_btn" type="button" onclick="setWindow3Page('computer/bank.html')">
+          <img src="assets/bank.png" alt="">
+          <span class="btn_text">Bank</span>
+        </button>
+
+        <button class="icon_btn" type="button" onclick="setWindow3Page('computer/history.html')">
+          <img src="assets/history.png" alt="">
+          <span class="btn_text">History</span>
+        </button>
+      </div>
+      </div>
+    </span>
+
+
+    </div>
+
+
+            <!-- window4 -->
+    <div class="window" id="window4"
+    style="display:none; position: absolute; z-index: 900; left: 400px; top: 550px;">
+
+      <div class="title-bar" id="TitleBar4" style="cursor: grab;">
+        <div class="title-bar-text">Ting</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="window-body" style="margin: 0; padding: 0;">
+        <iframe src="other/ting.html"
+                style="width: 100%; height: 260px; border: 0; display: block;"></iframe>
+      </div>
+
+    </div>
+
+       <!-- window5 -->
+    <div class="window" id="window5"
+        style="display: none; position: absolute; z-index: 900; left: 400px; top: 450px;">
+
+      <div class="title-bar" id="TitleBar5" style="cursor: grab;">
+        <div class="title-bar-text">terminal</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <img src="assets/terminal2.png" alt="">
+      </div>
+
+    </div>
+
+
+    <!-- window6 -->
+    <div class="window" id="window6"
+        style="position: absolute; z-index: 900; left: 1090px; top: 100px;">
+
+      <div class="title-bar" id="TitleBar6" style="cursor: grab;">
+        <div class="title-bar-text">Updates</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="window-body" style="padding: 0;">
+        <iframe src="cover/update.html"
+                style="width: 100%; height: 260px; border: 0; display: block;"></iframe>
+      </div>
+    </div>
+
+    <!-- window7 -->
+    <div class="window" id="window7"
+        style="display: none; position: absolute; z-index: 900; left: 200px; top: 100px;">
+      <div class="title-bar" id="TitleBar7" style="cursor: grab;">
+        <div class="title-bar-text">Media</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="window-body" style="padding: 0;">
+        <iframe src="other/media.html"
+                style="width: 100%; height: 260px; border: 0; display: block;"></iframe>
+      </div>
+
+    </div>
+
+     <!-- window8 -->
+    <div class="window" id="window8"
+        style="display: none; position: absolute; z-index: 900; left: 250px; top: 300px;">
+      <div class="title-bar" id="TitleBar8" style="cursor: grab;">
+        <div class="title-bar-text">Chat</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+
+
+      <div class="window-body" style="padding: 0;">
+        <iframe src="other/chat.html" style="width: 100%; height: 500px; border: 0; display: block;"></iframe>
+      </div> 
+
+    </div>
+
+
+
+
+    
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
