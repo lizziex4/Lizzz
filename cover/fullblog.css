@@ -40,23 +40,31 @@ html, body {
     letter-spacing: 2px; 
 }
 
+/* ===== 修正後的 X 按鈕程式碼 ===== */
 .title-bar button {
-    background-color: #fff0fa !important;
+    width: 18px !important;  /* 固定寬度 */
+    height: 18px !important; /* 固定高度，確保是正方形 */
+    background-color: #fff0fa !important; 
     border-top: 2px solid #ffffff !important;
     border-left: 2px solid #ffffff !important;
     border-bottom: 2px solid #a36270 !important;
     border-right: 2px solid #a36270 !important;
-    box-shadow: none !important; /* 強制清除 98.css 的灰黑陰影 */
+    box-shadow: none !important;
     cursor: pointer;
+    /* 加入這兩行，強制 X 圖示完美置中 */
+    background-position: center !important; 
+    background-repeat: no-repeat !important;
 }
 
-/* 新增按下 X 按鈕時的內凹動效 */
+/* 按下 X 按鈕時的內凹動效 */
 .title-bar button:active {
     border-top: 2px solid #a36270 !important;
     border-left: 2px solid #a36270 !important;
     border-bottom: 2px solid #ffffff !important;
     border-right: 2px solid #ffffff !important;
     background-color: #fbd9e4 !important;
+    /* 點擊時也要保持置中 */
+    background-position: center !important; 
 }
 
 /* ===== 修正滿版視窗的外框與底色 ===== */
@@ -177,6 +185,15 @@ html, body {
   margin-bottom: 48px;
   text-align: center;
   text-shadow: 3px 3px #a36270;
+}
+
+
+/* 調整大標題旁邊的 GIF 圖片大小 */
+.full_blog_title img {
+  height: 40px; /* 透過調整高度來放大圖片，你可以根據喜好修改這個數值 */
+  width: auto;  /* 讓寬度按比例自動計算，確保圖片不會變形 */
+  vertical-align: middle; /* 讓圖片跟旁邊的文字保持在同一條水平線上對齊 */
+  margin: 0 8px; /* 讓圖片跟文字之間保持一點點距離，視覺上會更舒服 */
 }
 
 /* 每一篇詳細的文章區塊 */

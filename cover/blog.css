@@ -44,13 +44,27 @@ html, body {
   color: #ffffff;
 }
 
-.blo_title {
+/* 1. 修正名稱為 .blog_title，並加入 Flexbox 排版 */
+.blog_title {
   font-size: 24px;
   color: #fbd9e4;
   margin-top: 0;
-  margin-bottom: 24px;
-  text-align: center;
+  margin-bottom: 30px; /* 將底下的留白加大，推開與日期的距離 */
   text-shadow: 2px 2px #a36270;
+  
+  /* 啟動 Flexbox 排版，讓內部元素強制水平與垂直置中 */
+  display: flex;
+
+
+  gap: 12px; /* 設定文字與兩側翅膀的間距 */
+}
+
+/* 2. 獨立控制標題旁的翅膀圖片 */
+.blog_title img {
+  height: 25px; /* 統一圖片的高度 */
+  width: auto;
+  /* 像素字體的重心通常偏下，透過 translateY 將圖片微幅下推，視覺上就會完全對齊 */
+  transform: translateY(2px); 
 }
 
 /* 單篇日誌區塊 */
