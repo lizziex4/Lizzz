@@ -18,11 +18,11 @@
 html, body {
   height: 100%;
   margin: 0;
-  background-color: #000000; /* 底色維持純黑 */
+  background-color: #000000; 
   font-family: 'Cubic_11', 'Courier New', monospace;
   -webkit-font-smoothing: none;
   image-rendering: pixelated;
-  overflow: hidden; /* 由內部的捲動條控制 */
+  overflow: hidden; 
 }
 
 /* 強制覆寫 98.css 的所有預設字體 */
@@ -42,8 +42,9 @@ html, body {
 
 /* ===== 修正後的 X 按鈕程式碼 ===== */
 .title-bar button {
-    width: 18px !important;  /* 固定寬度 */
-    height: 18px !important; /* 固定高度，確保是正方形 */
+    width: 22px !important;  
+    height: 22px !important; 
+    padding: 0 !important; /* 強制清除預設內邊距，解決擠壓問題 */
     background-color: #fff0fa !important; 
     border-top: 2px solid #ffffff !important;
     border-left: 2px solid #ffffff !important;
@@ -51,7 +52,6 @@ html, body {
     border-right: 2px solid #a36270 !important;
     box-shadow: none !important;
     cursor: pointer;
-    /* 加入這兩行，強制 X 圖示完美置中 */
     background-position: center !important; 
     background-repeat: no-repeat !important;
 }
@@ -100,11 +100,13 @@ html, body {
 }
 
 .explorer_navigator .back_button {
-  width: 18px;
-  height: 18px;
+  width: 20px; /* 稍微加寬讓 < 有置中的呼吸空間 */
+  height: 20px;
+  padding: 0; /* 歸零內邊距 */
   display: flex;
   justify-content: center;
   align-items: center;
+  line-height: 1; 
   background-color: #fff0fa;
   border-top: 2px solid #ffffff;
   border-left: 2px solid #ffffff;
@@ -158,13 +160,21 @@ html, body {
   background-color: #f1edef; /* 視窗邊框的淡粉色 */
 }
 
-/* 黑色沉浸式內容區 (參照 blog.css inner_box) */
+/* 黑色沉浸式內容區附帶背景圖與遮罩 */
 .full_content_scroll {
   flex: 1;
   overflow-y: auto;
-  background: #000000; /* 沉浸式黑色背景 */
-  padding: 60px 15%;  /* 寬螢幕兩側留白，避免文字過長難讀 */
+  padding: 60px 0;  
   box-sizing: border-box;
+  
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url('../assets/fullblogimg.png');
+  
+  background-size: 100% 100%; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  /* 已經刪除 background-attachment: fixed; */
 }
 
 /* 自定義捲動條 (參照 blog.css 樣式) */
@@ -178,22 +188,33 @@ html, body {
   border-right: 2px solid #a36270;
 }
 
-/* 網誌大標題 (參照 blog.css blog_title) */
+/* 網誌大標題 */
 .full_blog_title {
-  font-size: 36px; /* 放大版 */
+  font-size: 36px; 
   color: #fbd9e4;
   margin-bottom: 48px;
   text-align: center;
   text-shadow: 3px 3px #a36270;
+  
+  /* 新增：限制最大寬度並讓整體區塊置中 */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
-/* 調整大標題旁邊的 GIF 圖片大小 */
-.full_blog_title img {
-  height: 40px; /* 透過調整高度來放大圖片，你可以根據喜好修改這個數值 */
-  width: auto;  /* 讓寬度按比例自動計算，確保圖片不會變形 */
-  vertical-align: middle; /* 讓圖片跟旁邊的文字保持在同一條水平線上對齊 */
-  margin: 0 8px; /* 讓圖片跟文字之間保持一點點距離，視覺上會更舒服 */
+/* 每一篇詳細的文章區塊 */
+.full_blog_entry {
+  margin-bottom: 60px;
+  padding-bottom: 30px;
+  border-bottom: 1px dashed #a36270;
+  
+  /* 新增：限制最大寬度、整體區塊置中，並加上左右內邊距 */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 /* 每一篇詳細的文章區塊 */

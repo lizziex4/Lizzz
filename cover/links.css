@@ -7,21 +7,28 @@
 }
 
 html, body {
+  width: 100%;
   height: 100%;
   margin: 0;
-  display: flex;
+  /* 移除原本的 display: flex; 讓網頁恢復預設的區塊延伸 */
   font-family: 'Cubic_11', 'Courier New', monospace;
   -webkit-font-smoothing: none;
   image-rendering: pixelated;
 }
 
 .content_scroll {
-  flex: 1 1 auto;
-  min-height: 0;
+  position: absolute; /* 啟用絕對定位 */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* 緊緊貼合上下左右，強制撐滿整個 iframe */
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 16px;
-  background-color: #f1edef;
+  
+  background-image: url('https://i.pinimg.com/736x/fd/5e/5b/fd5e5b5be54d22c6933138849bd5c297.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
 }
 
 /* 捲動條樣式 */
@@ -38,14 +45,32 @@ html, body {
 .links_container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* 維持水平置中 */
+  justify-content: flex-start; /* 取消垂直置中，改回由上往下排 */
+  min-height: 100%; 
   gap: 16px;
+  padding: 40px 0 60px 0; /* 上方保留 40px，下方保留 60px 的呼吸空間，數值可依喜好自由微調 */
+  box-sizing: border-box; /* 確保 padding 空間向內縮，避免撐破原始視窗高度 */
 }
 
 .page_title {
-  font-size: 20px;
-  color: #a36270;
+  font-size: 30px;
+  color: #fad6e4;
   margin-bottom: 8px;
+  text-shadow: 2px 2px #a36270;
+}
+
+
+
+/* 裝飾圖片樣式 */
+.links_img {
+  display: block;
+  width: 100%;       /* 強制寬度佔滿整層容器的 100% */
+  max-width: 300px;   /* 解除原本 150px 的最大寬度限制 */
+  height: auto;      /* 高度隨寬度自動等比例縮放，確保圖片不變形 */
+  image-rendering: pixelated; 
+  margin-top: 10px;  /* 稍微往下推，避免跟上方標題黏在一起 */
+  margin-bottom: 24px; /* 加大與下方第一顆按鈕的距離，讓視覺更透氣 */
 }
 
 /* 復古按鈕設計 */
@@ -53,7 +78,7 @@ html, body {
   display: flex;
   align-items: center;
   width: 80%;
-  max-width: 300px;
+  max-width: 150px;
   padding: 12px 16px;
   background-color: #fbd9e4;
   border-top: 2px solid #ffffff;
@@ -62,10 +87,15 @@ html, body {
   border-right: 2px solid #a36270;
   text-decoration: none;
   color: #000000;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.1s;
 }
+
+
+
+
 
 .retro_btn:active {
   border-top: 2px solid #a36270;

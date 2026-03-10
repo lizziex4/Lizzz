@@ -35,11 +35,21 @@ html, body {
   border-right: 2px solid #a36270;
 }
 
-/* 黑色沉浸式內框 */
+
+/* 黑色內框 */
 .inner_box {
-  background: #000000;
-  min-height: 100%;
-  padding: 20px;
+  background-color: #000000; /* 加入純黑底色打底，避免圖片載入前閃爍白屏 */
+  background-image: url('https://i.pinimg.com/1200x/28/0c/57/280c579ba42a1bf67ca2a205befd7bc1.jpg');
+  
+  /* 關鍵修改：強制寬高完全貼合視窗 100%，不裁切 */
+  background-size: 100% 100%; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 100%;            
+  
+  /* 關鍵微調：因為邊框顯現出來了，我們要把 padding 加大，避免文字壓在花紋上 */
+  padding: 40px 30px; 
   box-sizing: border-box;
   color: #ffffff;
 }
