@@ -1,0 +1,211 @@
+@font-face {
+  font-family: "Cubic_11";
+  src: url("../fonts/Cubic_11.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PixelOperator";
+  src: url("../fonts/PixelOperator.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 全螢幕基礎設定 */
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #000000; /* 底色維持純黑 */
+  font-family: 'Cubic_11', 'Courier New', monospace;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+  overflow: hidden; /* 由內部的捲動條控制 */
+}
+
+/* 強制覆寫 98.css 的所有預設字體 */
+.window, .window * {
+  font-family: 'Cubic_11', 'Courier New', monospace !important;
+}
+
+/* ===== 覆寫 98.css 的標題列樣式 (同步主視窗設定) ===== */
+.title-bar {
+    background: #000000 !important; 
+}
+
+.title-bar-text {
+    color: #ffffff !important; 
+    letter-spacing: 2px; 
+}
+
+.title-bar button {
+    background-color: #fff0fa !important;
+    border-top: 2px solid #ffffff !important;
+    border-left: 2px solid #ffffff !important;
+    border-bottom: 2px solid #a36270 !important;
+    border-right: 2px solid #a36270 !important;
+    box-shadow: none !important; /* 強制清除 98.css 的灰黑陰影 */
+    cursor: pointer;
+}
+
+/* 新增按下 X 按鈕時的內凹動效 */
+.title-bar button:active {
+    border-top: 2px solid #a36270 !important;
+    border-left: 2px solid #a36270 !important;
+    border-bottom: 2px solid #ffffff !important;
+    border-right: 2px solid #ffffff !important;
+    background-color: #fbd9e4 !important;
+}
+
+/* ===== 修正滿版視窗的外框與底色 ===== */
+.full_window_container {
+    background-color: #fbd9e4 !important; /* 你的招牌粉紅色 */
+    border: 2px solid #a36270 !important; /* 深粉色邊框 */
+    box-sizing: border-box; /* 確保邊框不會把視窗撐破 */
+}
+
+/* ===== Navigator ===== */
+
+/* 強制讓 navigator 及其所有子元素優先套用英文字體 */
+.explorer_navigator, 
+.explorer_navigator * {
+  font-family: 'PixelOperator', 'Courier New', monospace !important;
+}
+
+.explorer_navigator {
+  height: 22px; 
+  margin: 2px;
+  padding: 3px 5px;
+  display: flex; 
+  align-items: center;
+  gap: 8px; 
+  background-color: #fbd9e4; 
+  border-top: 1px solid #ffffff; 
+  border-left: 1px solid #ffffff;
+  border-bottom: 1px solid #a36270;
+  border-right: 1px solid #a36270;
+  font-size: 13px;
+  /* 將原本的 PixelOperator 改為 Cubic_11 */
+  font-family: 'PixelOperator', 'Courier New', monospace !important;
+}
+
+.explorer_navigator .back_button {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff0fa;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.explorer_navigator .back_button:active {
+  border-top:  2px solid #a36270;
+  border-left: 2px solid #a36270;
+  border-bottom: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  background-color: #fbd9e4; 
+}
+
+.explorer_navigator .address_text {
+  color: #000000;
+  font-size: 16px;
+}
+
+.explorer_navigator .nav_search_bar {
+  flex-grow: 1; 
+  height: 18px;
+  background-color: #fff0fa;
+  border-top: 1px solid #a36270;
+  border-left: 1px solid #a36270;
+  display: flex;
+  align-items: center;
+  font-family: 'PixelOperator', 'Courier New', monospace !important;
+  cursor: default;
+}
+
+.explorer_navigator .search_bar_text {
+  padding: 4px;
+  font-size: 16px;
+  color: #000000;
+}
+
+
+
+
+
+/* 滿版視窗容器 */
+.full_window_container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f1edef; /* 視窗邊框的淡粉色 */
+}
+
+/* 黑色沉浸式內容區 (參照 blog.css inner_box) */
+.full_content_scroll {
+  flex: 1;
+  overflow-y: auto;
+  background: #000000; /* 沉浸式黑色背景 */
+  padding: 60px 15%;  /* 寬螢幕兩側留白，避免文字過長難讀 */
+  box-sizing: border-box;
+}
+
+/* 自定義捲動條 (參照 blog.css 樣式) */
+.full_content_scroll::-webkit-scrollbar { width: 14px; }
+.full_content_scroll::-webkit-scrollbar-track { background: #f1edef; }
+.full_content_scroll::-webkit-scrollbar-thumb {
+  background: #fad6e4;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #a36270;
+  border-right: 2px solid #a36270;
+}
+
+/* 網誌大標題 (參照 blog.css blog_title) */
+.full_blog_title {
+  font-size: 36px; /* 放大版 */
+  color: #fbd9e4;
+  margin-bottom: 48px;
+  text-align: center;
+  text-shadow: 3px 3px #a36270;
+}
+
+/* 每一篇詳細的文章區塊 */
+.full_blog_entry {
+  margin-bottom: 60px;
+  padding-bottom: 30px;
+  border-bottom: 1px dashed #a36270;
+}
+
+.full_entry_date {
+  font-size: 18px;
+  color: #fbd9e4;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.full_entry_content {
+  font-size: 18px;
+  line-height: 2; /* 增加行距，適合長文閱讀 */
+  color: #eeeeee;
+}
+
+/* 返回按鈕裝飾 */
+.back_to_home {
+  display: inline-block;
+  margin-top: 40px;
+  color: #fbd9e4;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+

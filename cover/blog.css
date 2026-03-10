@@ -44,7 +44,7 @@ html, body {
   color: #ffffff;
 }
 
-.journal_title {
+.blo_title {
   font-size: 24px;
   color: #fbd9e4;
   margin-top: 0;
@@ -54,7 +54,7 @@ html, body {
 }
 
 /* 單篇日誌區塊 */
-.journal_entry {
+.blog_entry {
   margin-bottom: 32px;
   padding-bottom: 16px;
   border-bottom: 1px dashed #a36270;
